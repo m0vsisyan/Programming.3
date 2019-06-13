@@ -5,7 +5,7 @@ var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Predator.js");
 var Change = require("./modules/Change.js");
 var Monster = require("./modules/Monster.js");
-let random = require('./modules/random');
+let random = require('./modules/random.js');
 //! Requiring modules  --  END
 
 
@@ -56,7 +56,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, change, monste
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(30, 20, 15, 5, 5, 10);
+matrixGenerator(20, 20, 10, 15, 5, 3);
 //! Creating MATRIX -- END
 
 
@@ -86,14 +86,19 @@ function creatingObjects() {
                 grassEaterArr.push(grassEater);
                 grassHashiv++;
             }
-            else if (matrix[y][x] == 1) {
-                var grass = new Grass(x, y);
-                grassArr.push(grass);
+            else if (matrix[y][x] == 3) {
+                var predator = new Predator(x, y);
+                predatorArr.push(predator);
                 grassHashiv++;
             }
-            else if (matrix[y][x] == 1) {
-                var grass = new Grass(x, y);
-                grassArr.push(grass);
+            else if (matrix[y][x] == 4) {
+                var change = new Change(x, y);
+                changeArr.push(change);
+                grassHashiv++;
+            }
+            else if (matrix[y][x] == 5) {
+                var monster = new Monster(x, y);
+                monsterArr.push(monster);
                 grassHashiv++;
             }
         }
@@ -112,7 +117,21 @@ function game() {
             grassEaterArr[i].eat();
         }
     }
-
+    if (predatorArr[0] !== undefined) {
+        for (var i in predatorArr) {
+            predatorArr[i].eat();
+        }
+    }
+    if (changeArr[0] !== undefined) {
+        for (var i in changeArr) {
+            changeArr[i].change();
+        }
+    }
+    if (monsterArr[0] !== undefined) {
+        for (var i in monsterArr) {
+            monsterArr[i].eat();
+        }
+    }
     //! Object to send
     let sendData = {
         matrix: matrix,

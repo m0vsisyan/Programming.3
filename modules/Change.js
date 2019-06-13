@@ -71,8 +71,8 @@ module.exports = class Change extends LiveForm {
                     var newgrassEater = new GrassEater(this.x, this.y, 2);
                     grassEaterArr.push(newgrassEater)
                     
-                    for (var i in changerArr) {
-                        if (newX == changerArr[i].x && newY == changerArr[i].y) {
+                    for (var i in changeArr) {
+                        if (newX == changeArr[i].x && newY == changeArr[i].y) {
                             predatorArr.splice(i,1)
                             break;
                         }
@@ -90,8 +90,8 @@ module.exports = class Change extends LiveForm {
                 var newCell = random(this.chooseCell(0));
         
                 if (this.energy >= 10 && newCell) {
-                    var newchangerArr = new Change(newCell[0], newCell[1], this.index);
-                    changerArr.push(newchangerArr);
+                    var newchangeArr = new Change(newCell[0], newCell[1], this.index);
+                    changeArr.push(newchangeArr);
                     matrix[newCell[1]][newCell[0]] = 4;
                     this.energy = 5;
                 }
@@ -99,9 +99,9 @@ module.exports = class Change extends LiveForm {
 
             die() {
                 matrix[this.y][this.x] = 0;
-                for(var i in changerArr){
-                    if(changerArr[i].y==this.y && changerArr[i].x==this.x){
-                        changerArr.splice(i,1);
+                for(var i in changeArr){
+                    if(changeArr[i].y==this.y && changeArr[i].x==this.x){
+                        changeArr.splice(i,1);
                     }
                 }
             }
