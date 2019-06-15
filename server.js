@@ -16,8 +16,11 @@ predatorArr = [];
 changeArr = [];
 monsterArr = [];
 matrix = [];
-grassHashiv = 0;
-grassEaterHashiv = 0;
+grassScore = 0;
+grassEaterScore = 0;
+predatorScore = 0;
+changeScore = 0;
+monsterScore = 0;
 //! Setting global arrays  -- END
 
 
@@ -57,7 +60,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, change, monste
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(20, 10, 15, 5, 5, 5);
+matrixGenerator(15, 15, 15, 7, 10, 3);
 //! Creating MATRIX -- END
 
 
@@ -82,26 +85,26 @@ function creatingObjects() {
             if (matrix[y][x] == 2) {
                 var grassEater = new GrassEater(x, y);
                 grassEaterArr.push(grassEater);
-                grassEaterHashiv++;
+                grassEaterScore++;
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
-                grassHashiv++;
+                grassScore++;
             }
             else if (matrix[y][x] == 3) {
                 var predator = new Predator(x, y);
                 predatorArr.push(predator);
-                
+                predatorScore++;
             }
             else if (matrix[y][x] == 4) {
                 var change = new Change(x, y);
                 changeArr.push(change);
-                
+                changeScore++;
             }
             else if (matrix[y][x] == 5) {
                 var monster = new Monster(x, y);
                 monsterArr.push(monster);
-                
+                monsterScore++;
             }
         }
     }
@@ -138,8 +141,11 @@ function game() {
     //! Object to send
     let sendData = {
         matrix: matrix,
-        grassCounter: grassHashiv,
-        grassEaterCounter: grassEaterHashiv,
+        grassCounter: grassScore,
+        grassEaterCounter: grassEaterScore,
+        predatorCounter: predatorScore,
+        changeCounter: changeScore,
+        monsterCounter: monsterScore,
     }
 
     //! Send data over the socket to clients who listens "data"

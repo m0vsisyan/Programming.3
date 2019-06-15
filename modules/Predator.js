@@ -28,7 +28,8 @@ module.exports = class Predator extends LiveForm {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 
-        if (this.life >= 10 && newCell) {
+        if (newCell) {
+            predatorScore++;
             let x = newCell[0];
             let y = newCell[1];
             matrix[y][x] = 3;
@@ -58,7 +59,7 @@ module.exports = class Predator extends LiveForm {
             this.x = x;
             this.y = y;
 
-            if (this.life >= 13) {
+            if (this.life >= 5) {
                 this.mul();
             }
         }
@@ -67,7 +68,7 @@ module.exports = class Predator extends LiveForm {
         }
     }
     move() {
-        this.life-=2;
+        this.life--;
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 

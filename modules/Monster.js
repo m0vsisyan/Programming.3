@@ -3,7 +3,7 @@ var Predator = require("./Predator.js");
 var Change = require("./Change.js");
 var random = require("./random.js");
 
-module.exports = class GrassEater extends LiveForm {
+module.exports = class Monster extends LiveForm {
     constructor(x, y) {
         super(x, y);
         this.life = 10;
@@ -28,7 +28,8 @@ module.exports = class GrassEater extends LiveForm {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 
-        if (this.life >= 10 && newCell) {
+        if (newCell) {
+            monsterScore++;
             let x = newCell[0];
             let y = newCell[1];
             matrix[y][x] = 5;
@@ -65,7 +66,7 @@ module.exports = class GrassEater extends LiveForm {
             this.x = x;
             this.y = y;
 
-            if (this.life >= 13) {
+            if (this.life >= 10) {
                 this.mul();
             }
         }
