@@ -18,8 +18,15 @@ module.exports = class Change extends LiveForm {
             [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-
+            [this.x + 1, this.y + 1],
+            [this.x - 2, this.y - 2],
+            [this.x, this.y - 2],
+            [this.x + 2, this.y - 2],
+            [this.x - 2, this.y],
+            [this.x + 2, this.y],
+            [this.x - 2, this.y + 2],
+            [this.x, this.y + 2],
+            [this.x + 2, this.y + 2],
         ];
     }
     chooseCell(character) {
@@ -55,6 +62,7 @@ module.exports = class Change extends LiveForm {
             matrix[this.y][this.x] = 0;
             var newgrassEater = new GrassEater(this.x, this.y, 2);
             grassEaterArr.push(newgrassEater);
+            grassEaterScore++;
 
             for (let i in predatorArr) {
                 if (predatorArr[i].x == x && predatorArr[i].y == y) {
@@ -73,7 +81,7 @@ module.exports = class Change extends LiveForm {
         }
     }
     move() {
-        this.life--;
+        this.life-=2;
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 

@@ -52,7 +52,7 @@ function setup() {
                     fill('blue');
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 5) {
-                    fill('#031424');
+                    fill('white');
                     rect(j * side, i * side, side, side);
                 }
             }

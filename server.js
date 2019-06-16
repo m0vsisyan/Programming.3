@@ -1,5 +1,6 @@
 
 //! Requiring modules  --  START
+var weather = 0;
 var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Predator.js");
@@ -60,7 +61,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, change, monste
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(15, 15, 15, 7, 10, 3);
+matrixGenerator(16, 15, 15, 10, 7, 3);
 //! Creating MATRIX -- END
 
 
@@ -137,7 +138,10 @@ function game() {
             monsterArr[i].eat();
         }
     }
-
+    weather++;
+    if(weather <= 10) {
+      
+    }
     //! Object to send
     let sendData = {
         matrix: matrix,
@@ -154,4 +158,4 @@ function game() {
 
 
 
-setInterval(game, 1000)
+setInterval(game, 700)

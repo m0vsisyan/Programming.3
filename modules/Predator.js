@@ -44,7 +44,7 @@ module.exports = class Predator extends LiveForm {
 
         if (newCell) {
 
-            this.life++;
+            this.life+=2;
             let x = newCell[0];
             let y = newCell[1];
 
