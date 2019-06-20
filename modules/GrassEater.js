@@ -58,17 +58,39 @@ module.exports = class GrassEater extends LiveForm {
             }
             this.x = x;
             this.y = y;
-
-            if (this.life >= 13) {
+         if(weather <= 5) {
+             season = "Ձմեռ";
+            if (this.life >= 14) {
                 this.mul();
             }
+          } 
+          else if (weather > 10 && weather <= 15) {
+              season = "Ամառ";
+            if(this.life >= 8) {
+                this.mul();
+            }
+          }
+          else {
+              if(this.life >= 10) {
+                  this.mul();
+              }
+          }
+        }
+        else if (weather < 5 || weather >= 10) {
+            this.move()
         }
         else {
-            this.move()
+            this.life++;
         }
     }
     move() {
-        this.life--;
+        if (weather > 15) {
+            season = "Աշուն";
+          this.life-=2;
+        }
+        else {
+            this.life--;
+        }
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
 

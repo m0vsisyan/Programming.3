@@ -1,6 +1,5 @@
 
 //! Requiring modules  --  START
-var weather = 0;
 var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
 var Predator = require("./modules/Predator.js");
@@ -22,6 +21,9 @@ grassEaterScore = 0;
 predatorScore = 0;
 changeScore = 0;
 monsterScore = 0;
+
+weather = 0;
+season = "";
 //! Setting global arrays  -- END
 
 
@@ -49,7 +51,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, change, monste
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 3;
-    }
+    } 
     for (let i = 0; i < change; i++) {
         let customX = Math.floor(random(matrixSize));
         let customY = Math.floor(random(matrixSize));
@@ -61,7 +63,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, change, monste
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(16, 15, 15, 10, 7, 3);
+matrixGenerator(16, 15, 15, 15, 10, 5);
 //! Creating MATRIX -- END
 
 
@@ -139,8 +141,11 @@ function game() {
         }
     }
     weather++;
-    if(weather <= 10) {
-      
+    if (weather > 20) {
+        weather = 0;
+    }
+    if(weather >5 && weather <= 10) {
+        season = "Գարուն";
     }
     //! Object to send
     let sendData = {
@@ -150,6 +155,7 @@ function game() {
         predatorCounter: predatorScore,
         changeCounter: changeScore,
         monsterCounter: monsterScore,
+        weatherCounter: season,
     }
 
     //! Send data over the socket to clients who listens "data"

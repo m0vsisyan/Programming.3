@@ -27,7 +27,6 @@ module.exports = class Predator extends LiveForm {
     mul() {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
-
         if (newCell) {
             predatorScore++;
             let x = newCell[0];
@@ -37,8 +36,48 @@ module.exports = class Predator extends LiveForm {
             predatorArr.push(predator);
             this.life = 5;
         }
-    }
+      } 
     eat() {
+        if (weather > 5 && weather <= 10) {
+        let emptyCells = this.chooseCell(4);
+        let newCell = random(emptyCells);
+
+        if (newCell) {
+
+            this.life+=3;
+            let x = newCell[0];
+            let y = newCell[1];
+            matrix[y][x] = 3;
+            matrix[this.y][this.x] = 0;
+
+            for (let i in changeArr) {
+                if (changeArr[i].x == x && changeArr[i].y == y) {
+                    changeArr.splice(i, 1)
+                }
+            }
+        
+            this.x = x;
+            this.y = y;
+          if (weather <= 5) {
+            if (this.life >= 2) {
+                this.mul();
+            }
+          } else if (weather <= 10 || weather > 15) {
+            if (this.life >= 5) {
+                this.mul();
+            }
+          }
+          else {
+            if (this.life >= 5) {
+                this.mul();
+            }
+          }
+        }
+        else {
+            this.move()
+        }
+      }
+else {
         let emptyCells = this.chooseCell(2);
         let newCell = random(emptyCells);
 
@@ -47,7 +86,6 @@ module.exports = class Predator extends LiveForm {
             this.life+=2;
             let x = newCell[0];
             let y = newCell[1];
-
             matrix[y][x] = 3;
             matrix[this.y][this.x] = 0;
 
@@ -56,16 +94,28 @@ module.exports = class Predator extends LiveForm {
                     grassEaterArr.splice(i, 1)
                 }
             }
+        
             this.x = x;
             this.y = y;
-
-            if (this.life >= 5) {
+          if (weather <= 5) {
+            if (this.life >= 4) {
                 this.mul();
             }
+          } else if (weather <= 10 || weather > 15) {
+            if (this.life >= 7) {
+                this.mul();
+            }
+          }
+          else {
+            if (this.life >= 7) {
+                this.mul();
+            }
+          }
         }
         else {
             this.move()
         }
+      }
     }
     move() {
         this.life--;
@@ -80,9 +130,14 @@ module.exports = class Predator extends LiveForm {
             this.y = y;
             this.x = x;
         }
-        if (this.life <= 0) {
+        if(weather > 15) {
+           this.die();
+      } 
+        else {
+            if (this.life <= 0) {
             this.die();
         }
+      }
     }
     die() {
         matrix[this.y][this.x] = 0;

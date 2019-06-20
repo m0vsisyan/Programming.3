@@ -15,6 +15,7 @@ function setup() {
     let changeCountElement = document.getElementById('changeCount');
     let monsterCountElement = document.getElementById('monsterCount');
 
+    var weatherCountElement = document.getElementById('Season');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
     socket.on("data", drawCreatures);
@@ -27,6 +28,7 @@ function setup() {
         predatorCountElement.innerText = data.predatorCounter;
         changeCountElement.innerText = data.changeCounter;
         monsterCountElement.innerText = data.monsterCounter;
+        weatherCountElement.innerText = data.weatherCounter;
         //! Every time it creates new Canvas woth new matrix size
         createCanvas(matrix[0].length * side, matrix.length * side)
         //! clearing background by setting it to new grey color
