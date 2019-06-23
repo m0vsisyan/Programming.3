@@ -14,7 +14,7 @@ function setup() {
     let predatorCountElement = document.getElementById('predatorCount');
     let changeCountElement = document.getElementById('changeCount');
     let monsterCountElement = document.getElementById('monsterCount');
-
+    var bgColor = document.getElementById('bgcolor');
     var weatherCountElement = document.getElementById('Season');
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
@@ -59,5 +59,20 @@ function setup() {
                 }
             }
         }
-    }
+        if(data.weatherCounter == "Winter") {
+            document.body.style.backgroundColor = "lightblue";
+        }
+        else if (data.weatherCounter == "Spring") {
+            document.body.style.backgroundColor = "lightgreen";
+        }
+        else if (data.weatherCounter == "Summer") {
+            document.body.style.backgroundColor = "lightyellow";
+        }
+        else if (data.weatherCounter == "Autumn") {
+            document.body.style.backgroundColor = "#FFC0B3";
+        }
+        else {
+            document.body.style.backgroundColor = "white";
+        }
+}
 }

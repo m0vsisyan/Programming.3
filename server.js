@@ -115,6 +115,8 @@ function creatingObjects() {
 creatingObjects();
 
 function game() {
+
+    console.log(season);
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
@@ -141,11 +143,20 @@ function game() {
         }
     }
     weather++;
-    if (weather > 20) {
-        weather = 0;
+    if(weather <= 5) {
+        season = "Winter";     
     }
-    if(weather >5 && weather <= 10) {
-        season = "Գարուն";
+   else if(weather > 5 && weather <= 10) {
+        season = "Spring";
+    }
+    else if(weather > 10 && weather <= 15) {
+        season = "Summer";
+    }
+    else if(weather > 15 && weather <= 20) {
+        season = "Autumn";
+    }
+    else {
+        weather = 0;
     }
     //! Object to send
     let sendData = {

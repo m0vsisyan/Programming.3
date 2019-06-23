@@ -59,13 +59,13 @@ module.exports = class GrassEater extends LiveForm {
             this.x = x;
             this.y = y;
          if(weather <= 5) {
-             season = "Ձմեռ";
+
             if (this.life >= 14) {
                 this.mul();
             }
           } 
           else if (weather > 10 && weather <= 15) {
-              season = "Ամառ";
+
             if(this.life >= 8) {
                 this.mul();
             }
@@ -85,7 +85,7 @@ module.exports = class GrassEater extends LiveForm {
     }
     move() {
         if (weather > 15) {
-            season = "Աշուն";
+
           this.life-=2;
         }
         else {

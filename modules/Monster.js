@@ -1,6 +1,4 @@
 var LiveForm = require("./LiveForm");
-var Predator = require("./Predator.js");
-var Change = require("./Change.js");
 var random = require("./random.js");
 
 module.exports = class Monster extends LiveForm {
